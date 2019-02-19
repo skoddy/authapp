@@ -1,0 +1,68 @@
+$myapp-green: (
+    50 : #e4f7f0,
+    100 : #bcead9,
+    200 : #8fdcc0,
+    300 : #62cea6,
+    400 : #40c493,
+    500 : #1eb980,
+    600 : #1ab278,
+    700 : #16aa6d,
+    800 : #12a263,
+    900 : #0a9350,
+    A100 : #c1ffde,
+    A200 : #8effc3,
+    A400 : #5bffa7,
+    A700 : #41ff9a,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$myapp-warn: (
+    50 : #ffffff,
+    100 : #ffffff,
+    200 : #ffe1de,
+    300 : #ffa096,
+    400 : #ff8478,
+    500 : #ff6859,
+    600 : #ff4c3a,
+    700 : #ff301c,
+    800 : #fc1700,
+    900 : #de1400,
+    A100 : #ffffff,
+    A200 : #fff3f2,
+    A400 : #ff968c,
+    A700 : #ff7f72,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$myapp-dark-primary: mat-palette($myapp-green, 500);
+$myapp-dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$myapp-dark-warn:    mat-palette($myapp-warn);
+$myapp-dark-theme:   mat-dark-theme($myapp-dark-primary, $myapp-dark-accent, $myapp-dark-warn);

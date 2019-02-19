@@ -5,3 +5,17 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+.toolbar {
+  position: fixed;
+  height: 56px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.main-container {
+  position: absolute;
+  top: 56px;
+}

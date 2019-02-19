@@ -1,19 +1,24 @@
-<mat-toolbar color="primary">
-  <span>My App</span>
-  <span class="spacer"></span>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="auth/login">
-      <mat-icon>dialpad</mat-icon>
-      <span>Login</span>
-    </button>
-    <button mat-menu-item routerLink="auth/register">
-      <mat-icon>voicemail</mat-icon>
-      <span>Register</span>
-    </button>
-  </mat-menu>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+<mat-drawer-container fullscreen>
+  <mat-drawer-content>
+    <mat-toolbar class="toolbar">
+      <span>My App</span>
+      <span class="spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="auth/login">
+          <mat-icon>dialpad</mat-icon>
+          <span>Login</span>
+        </button>
+        <button mat-menu-item routerLink="auth/register">
+          <mat-icon>voicemail</mat-icon>
+          <span>Register</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="main-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
