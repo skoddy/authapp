@@ -17,7 +17,7 @@ export class AppComponent {
     this.setTheme();
   }
   setTheme(): any {
-    this.theme = 'dark-theme';//  'default-theme';
+    this.theme = 'default-theme';//  'default-theme';
     this.componentCssClass = this.theme;
     const classList = this.overlayContainer.getContainerElement().classList;
     const toRemove = Array.from(classList).filter((item: string) =>

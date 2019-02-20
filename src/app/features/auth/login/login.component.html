@@ -1,4 +1,4 @@
-<form class="form" autocomplete="off">
+<form class="form">
   <mat-card>
 
       <mat-card-title>
@@ -7,7 +7,7 @@
 
     <mat-card-content>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+        <input matInput placeholder="Email" name="email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
           Please enter a valid email address
         </mat-error>
@@ -16,7 +16,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
+        <input matInput name="password" placeholder="Password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
           [type]="hide ? 'password' : 'text'">
         <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-error *ngIf="passwordFormControl.hasError('required')">
