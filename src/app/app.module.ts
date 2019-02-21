@@ -6,10 +6,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthComponent } from './features/auth/auth.component';
+import { LoginComponent } from './features/auth/login/login.component';
+import { RegisterComponent } from './features/auth/register/register.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     AppRoutingModule,
@@ -19,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule
   ],
   providers: [],
+  entryComponents: [AuthComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

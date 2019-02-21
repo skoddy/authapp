@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { AuthActions } from '@app/data-model';
 
 @Component({
   selector: 'app-auth',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: AuthActions) { }
 
   ngOnInit() {
   }

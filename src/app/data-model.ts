@@ -4,3 +4,7 @@ export interface User {
     displayName: string;
     photoURL: string;
 }
+
+export interface AuthActions {
+    action: 0 | 1 | 2;
+  }

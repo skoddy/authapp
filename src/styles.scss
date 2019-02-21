@@ -1,11 +1,15 @@
 @import "~@angular/material/theming";
-
+@import "~@angular/cdk/text-field";
 @include mat-core();
-@import './themes/default-theme.scss';
-@import './themes/dark-theme.scss';
+@import "./themes/default-theme.scss";
+@import "./themes/dark-theme.scss";
 
 .default-theme {
   @include angular-material-theme($myapp-theme);
+  // Set custom-autofill inputs to have no background and red text.
+  input.custom-autofill {
+    @include cdk-text-field-autofill-color(transparent, red);
+  }
 }
 
 .dark-theme {
@@ -19,4 +23,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.auth-dialog-class .mat-dialog-container {
+  padding: 0px;
 }

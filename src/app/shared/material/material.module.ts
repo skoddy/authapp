@@ -68,7 +68,7 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
+    MatTooltipModule
   ],
   exports: [
     MatAutocompleteModule,

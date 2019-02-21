@@ -1,3 +1,14 @@
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+
+  <mat-tab-group color="primary" dynamicHeight mat-stretch-tabs class="stretched-tabs" [selectedIndex]="data.action" animationDuration="0ms" mat-align-tabs="center">
+    <mat-tab label="Anmelden">
+      <ng-template matTabContent>
+        <app-login></app-login>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Registrieren">
+      <ng-template matTabContent>
+        <app-register></app-register>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
