@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthComponent } from './features/auth/auth.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { RegisterComponent } from './features/auth/register/register.component';
     CoreModule,
     SharedModule
   ],
-  providers: [],
+  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   entryComponents: [AuthComponent],
   bootstrap: [AppComponent]
 })

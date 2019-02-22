@@ -4,14 +4,14 @@
     <mat-card-content>
 
       <mat-form-field class="full-width">
-        <input matInput name="name" placeholder="Your Name" formControlName="name" [errorStateMatcher]="matcher" autocomplete="off">
+        <input matInput name="name" placeholder="Your Name" formControlName="name">
         <mat-error *ngIf="registerForm.controls['name'].errors?.required">
           Name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput name="email" placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+        <input matInput name="email" placeholder="Email" formControlName="email" >
         <mat-error *ngIf="registerForm.controls['email'].errors?.email && !registerForm.controls['email'].errors?.required">
           Please enter a valid email address
         </mat-error>
@@ -21,28 +21,27 @@
       </mat-form-field>
     <div formGroupName="passwords">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher"
+        <input matInput placeholder="Password" formControlName="password" 
           [type]="hide ? 'password' : 'text'">
         <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon>
 
-        <mat-error *ngIf="registerForm['controls'].passwords['controls'].password?.hasError('required')">
+        <mat-error *ngIf="registerForm['controls'].passwords?.hasError('required', 'password')">
           Email is <strong>required</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput name="repeat" placeholder="Repeat Password" formControlName="repeat"
-          [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text'" autocomplete="new-password">
+        <input matInput placeholder="Repeat Password" formControlName="repeat" [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher">
         <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon>
 
-        <mat-error *ngIf="registerForm.controls['passwords'].errors?.mismatch">
+        <mat-error *ngIf="registerForm['controls'].passwords?.hasError('mismatch')">
           mismatch
         </mat-error>
       </mat-form-field>
     </div>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button mat-button>Registrieren</button>
+      <button mat-button [disabled]="!registerForm.valid">Registrieren</button>
     </mat-card-actions>
   </mat-card>
 </form>
