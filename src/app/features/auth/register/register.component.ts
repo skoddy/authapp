@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -8,6 +8,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
+}
+export function passwordMatchValidator(g: FormControl) {
+  console.log(g.get('password').value);
+  console.log(g.get('repeat').value);
+  return g.get('password').value === g.get('repeat').value
+    ? null : { 'mismatch': true };
 }
 
 @Component({
@@ -18,28 +24,30 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 export class RegisterComponent implements OnInit {
   hide = true;
+  registerForm = new FormGroup({
+    name: new FormControl('', [
+      Validators.required
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+    ]),
+    passwords: new FormGroup({
+      password: new FormControl('', [
+        Validators.required,
+      ]),
+      repeat: new FormControl('', [
+        Validators.required,
+        passwordMatchValidator('password')
+      ])
+    })
+  });
 
-  nameFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  passwordFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  repeatPasswordFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  
   matcher = new MyErrorStateMatcher();
   constructor() { }
 
   ngOnInit() {
   }
+  get f() { return this.registerForm.controls; }
 
 }

@@ -1,43 +1,45 @@
-<form action="" class="form" >
+<form [formGroup]="registerForm" class="form" >
   <mat-card>
 
     <mat-card-content>
 
       <mat-form-field class="full-width">
-        <input matInput name="name" placeholder="Your Name" [formControl]="nameFormControl" [errorStateMatcher]="matcher" autocomplete="off">
-        <mat-error *ngIf="nameFormControl.hasError('required')">
+        <input matInput name="name" placeholder="Your Name" formControlName="name" [errorStateMatcher]="matcher" autocomplete="off">
+        <mat-error *ngIf="registerForm.controls['name'].errors?.required">
           Name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput name="email" placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        <input matInput name="email" placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="registerForm.controls['email'].errors?.email && !registerForm.controls['email'].errors?.required">
           Please enter a valid email address
         </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
+        <mat-error *ngIf="registerForm.controls['email'].errors?.required">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    <div formGroupName="passwords">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher"
+          [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+
+        <mat-error *ngIf="registerForm['controls'].passwords['controls'].password?.hasError('required')">
           Email is <strong>required</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput name="password" placeholder="Password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
-          [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-        <mat-error *ngIf="passwordFormControl.hasError('required')">
-          Password is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
-        <input matInput name="4" placeholder="Repeat Password" [formControl]="repeatPasswordFormControl"
+        <input matInput name="repeat" placeholder="Repeat Password" formControlName="repeat"
           [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text'" autocomplete="new-password">
         <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-        <mat-error *ngIf="repeatPasswordFormControl.hasError('required')">
-          Password is <strong>required</strong>
+
+        <mat-error *ngIf="registerForm.controls['passwords'].errors?.mismatch">
+          mismatch
         </mat-error>
       </mat-form-field>
-
+    </div>
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-button>Registrieren</button>

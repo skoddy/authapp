@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { FormControl, FormGroupDirective, Validators, NgForm } from '@angular/forms';
+import { FormControl, FormGroupDirective, Validators, NgForm, FormGroup, FormBuilder } from '@angular/forms';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -17,21 +17,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent implements OnInit {
   hide = true;
-  
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  passwordFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.email, Validators.required]),
+    password: new FormControl('', Validators.required)
+  })
   matcher = new MyErrorStateMatcher();
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+
+  }
 
   ngOnInit() {
   }
-
+  login() { }
 }
