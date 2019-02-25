@@ -62,26 +62,38 @@ export class AuthService {
     return this.authState.email || '';
   }
 
+  createUserWithEmailAndPassword(
+    displayName: string,
+    email: string,
+    password: string,
+  ) {
+    return this.afAuth.auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((credential) => {
+        this.updateUserData(credential.user, displayName);
+      })
+      ;
+  }
+
   signOut() {
     this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/']);
       console.log('Signed Out!');
-    });
+    })
+    .catch(error => this.handleError(error));
   }
 
   emailSignIn(email: string, password: string) {
     return this.afAuth.auth
-      .signInWithEmailAndPassword(email, password)
-      .then(user => console.log(user))
-      .catch(error => console.log(error.message));
+      .signInWithEmailAndPassword(email, password);
   }
 
   // If error, console log and toast user
   private handleError(error: Error) {
-    console.error(error);
+    console.log(error.message);
   }
-  
-  private updateUserData(user) {
+
+  private updateUserData(user, displayName) {
     // Sets user data to firestore on login
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
@@ -89,7 +101,7 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       email: user.email || null,
-      displayName: user.displayName,
+      displayName: user.displayName || displayName,
       photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
     };
 

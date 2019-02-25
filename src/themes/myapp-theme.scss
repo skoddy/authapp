@@ -1,0 +1,70 @@
+$myapp-blue: (
+    50 : #e7e9eb,
+    100 : #c2c8cc,
+    200 : #9aa4aa,
+    300 : #718088,
+    400 : #52646f,
+    500 : #344955,
+    600 : #2f424e,
+    700 : #273944,
+    800 : #21313b,
+    900 : #15212a,
+    A100 : #6dbeff,
+    A200 : #3aa7ff,
+    A400 : #0791ff,
+    A700 : #0083ec,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+$myapp-orange: (
+    50 : #fef5e7,
+    100 : #fde6c2,
+    200 : #fcd599,
+    300 : #fbc470,
+    400 : #fab752,
+    500 : #f9aa33,
+    600 : #f8a32e,
+    700 : #f79927,
+    800 : #f69020,
+    900 : #f57f14,
+    A100 : #ffffff,
+    A200 : #fff7f1,
+    A400 : #ffdabe,
+    A700 : #ffcca4,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$myapp-primary: mat-palette($myapp-blue, 600, 700, 800);
+$myapp-accent: mat-palette($myapp-orange);
+$myapp-warn: mat-palette($mat-pink, 600);
+
+$myapp-theme-two: mat-light-theme($myapp-primary, $myapp-accent, $myapp-warn);

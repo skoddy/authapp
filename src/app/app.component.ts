@@ -2,6 +2,8 @@ import { Component, HostBinding } from '@angular/core';
 import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 import { MatDialog } from '@angular/material';
 import { AuthComponent } from './features/auth/auth.component';
+import { AuthService } from './core/services/auth/auth.service';
+import { User } from './data-model';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +17,21 @@ export class AppComponent {
   title = 'myapp';
   theme: string;
   t: string;
+  user: User;
+  guest: string;
   constructor(
     public overlay: Overlay,
     public overlayContainer: OverlayContainer,
-    public dialog: MatDialog) {
-    this.setTheme('default-theme');
+    public dialog: MatDialog,
+    public auth: AuthService) {
+      this.auth.user$.subscribe(user => {
+        if (user) {
+          this.user = user;
+        } else {
+          this.guest = 'guest';
+        }
+      });
+    this.setTheme('myapp-theme');
   }
 
 

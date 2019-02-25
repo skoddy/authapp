@@ -3,7 +3,7 @@
 @include mat-core();
 @import "./themes/default-theme.scss";
 @import "./themes/dark-theme.scss";
-
+@import "./themes/myapp-theme.scss";
 .default-theme {
   @include angular-material-theme($myapp-theme);
   input.custom-autofill {
@@ -11,10 +11,10 @@
   }
 }
 
-.dark-theme {
-  @include angular-material-theme($myapp-dark-theme);
+.myapp-theme {
+  @include angular-material-theme($myapp-theme-two);
   input.custom-autofill {
-    @include cdk-text-field-autofill-color(transparent, white);
+    @include cdk-text-field-autofill-color(transparent, black);
   }
 }
 

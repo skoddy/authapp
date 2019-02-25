@@ -10,6 +10,8 @@ import { AuthComponent } from './features/auth/auth.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '@env/environment';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
     SharedModule
   ],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],

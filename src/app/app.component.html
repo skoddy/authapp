@@ -1,15 +1,24 @@
+<div *ngIf="user || guest">
 <mat-drawer-container fullscreen>
   <mat-drawer-content>
-    <mat-toolbar class="toolbar">
-      <span><button mat-button routerLink="/">My App</button></span>
+    <mat-toolbar class="toolbar" color="primary">
+      <span>My App</span>
       <span class="spacer"></span>
       <button mat-button (click)="setTheme('default-theme')">default</button>
-      <button mat-button (click)="setTheme('dark-theme')">dark</button>
-      <button mat-button (click)="openDialog(0)">Anmelden</button>
-      <button mat-button (click)="openDialog(1)">Registrieren</button>
+      <button mat-button (click)="setTheme('myapp-theme')">dark</button>
+      <div *ngIf="auth.authenticated then loggedIn else loginbutton"></div>
+      <ng-template #loggedIn>
+        {{auth.userData?.displayName}}
+        <button mat-button (click)="auth.signOut()">signout</button>
+      </ng-template>
+      <ng-template #loginbutton>
+        <button mat-button (click)="openDialog(0)">Anmelden</button>
+        <button mat-button (click)="openDialog(1)">Registrieren</button>
+      </ng-template>
     </mat-toolbar>
     <div class="main-container">
       <router-outlet></router-outlet>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
+</div>

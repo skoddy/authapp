@@ -12,20 +12,20 @@
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="outline">
-        <mat-label>Email Adresse</mat-label>
+        <mat-label>E-Mail Adresse</mat-label>
         <input class="custom-autofill" matInput name="email" formControlName="email">
         <mat-error
           *ngIf="registerForm.controls['email'].errors?.email && !registerForm.controls['email'].errors?.required">
-          Bitte gültige Email Adresse eingeben
+          Bitte gültige E-Mail Adresse eingeben
         </mat-error>
         <mat-error *ngIf="registerForm.controls['email'].errors?.required">
-          Email wird <strong>benötigt</strong>
+            E-Mail Adresse wird <strong>benötigt</strong>
         </mat-error>
       </mat-form-field>
 
       <div formGroupName="passwords">
 
-        <mat-form-field class="full-width" appearance="outline">
+        <mat-form-field class="full-width" appearance="outline" autofill="new-password">
           <mat-label>Passwort</mat-label>
           <input class="custom-autofill" matInput formControlName="password"
             [type]="hidePassword ? 'password' : 'text'">
@@ -35,8 +35,8 @@
             Passwort wird <strong>benötigt</strong>
           </mat-error>
           <mat-error *ngIf="registerForm['controls'].passwords?.hasError('minlength', 'password')">
-              Mindestens <strong>3</strong> Zeichen
-            </mat-error>
+            Passwort sollte mindestens <strong>6</strong> Zeichen lang sein
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width" appearance="outline">
@@ -49,12 +49,15 @@
             Passwörter stimmen nicht überein
           </mat-error>
         </mat-form-field>
-
+        <mat-error>
+          {{fbError}}
+        </mat-error>
       </div>
 
     </mat-card-content>
     <mat-card-actions align="end">
-      <button class="full-width" mat-flat-button color="primary" [disabled]="!registerForm.valid">Registrieren</button>
+      <button class="full-width" mat-flat-button color="accent" [disabled]="!registerForm.valid"
+        (click)="registerUser(registerForm)">Registrieren</button>
     </mat-card-actions>
   </mat-card>
 </form>

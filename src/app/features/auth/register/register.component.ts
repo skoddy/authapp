@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { AuthService } from '@app/core/services/auth/auth.service';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { AuthComponent } from '../auth.component';
 
 export class PasswordMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -21,7 +24,7 @@ export class PasswordMatcher implements ErrorStateMatcher {
 export class RegisterComponent implements OnInit {
   @ViewChild('name', { read: ElementRef }) name: ElementRef<HTMLElement>;
   @ViewChild('email', { read: ElementRef }) email: ElementRef<HTMLElement>;
-
+  fbError: string;
   hidePassword = true;
   hideRepeat = true;
   registerForm = new FormGroup({
@@ -35,7 +38,7 @@ export class RegisterComponent implements OnInit {
     passwords: new FormGroup({
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(6)
       ]),
       repeat: new FormControl('')
     }, { validators: this.passwordMatchValidator })
@@ -43,18 +46,22 @@ export class RegisterComponent implements OnInit {
 
   matcher = new PasswordMatcher();
 
-  constructor() { }
+  constructor(public auth: AuthService, private dialogRef:MatDialogRef<AuthComponent>) { }
 
   ngOnInit() {
 
   }
-  ngAfterViewInit() {
-    // you'll get your through 'elements' below code
 
+  registerUser(form) {
+    return this.auth
+      .createUserWithEmailAndPassword(
+        form.value.name,
+        form.value.email,
+        form.value.passwords.password
+      ).then(() => {
+        this.dialogRef.close();
+      }).catch(error => this.fbError = error.message)
   }
-  ngOnDestroy() {
-  }
-  get f() { return this.registerForm.controls; }
 
   passwordMatchValidator(g: FormControl) {
     return g.get('password').value === g.get('repeat').value
