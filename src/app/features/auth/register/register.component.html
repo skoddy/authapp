@@ -5,49 +5,48 @@
 
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Name</mat-label>
-        <input 
-          matInput
-          cdkFocusInitial 
-          class="custom-autofill" 
-          placeholder="Name" 
-          formControlName="name">
+        <input matInput cdkFocusInitial class="custom-autofill" formControlName="name">
         <mat-error *ngIf="registerForm.controls['name'].errors?.required">
-          Name is <strong>required</strong>
+          Name wird <strong>benötigt</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Email Adresse</mat-label>
-        <input matInput name="email" placeholder="Email" formControlName="email">
+        <input class="custom-autofill" matInput name="email" formControlName="email">
         <mat-error
           *ngIf="registerForm.controls['email'].errors?.email && !registerForm.controls['email'].errors?.required">
-          Please enter a valid email address
+          Bitte gültige Email Adresse eingeben
         </mat-error>
         <mat-error *ngIf="registerForm.controls['email'].errors?.required">
-          Email is <strong>required</strong>
+          Email wird <strong>benötigt</strong>
         </mat-error>
       </mat-form-field>
 
       <div formGroupName="passwords">
 
         <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" formControlName="password" [type]="hidePassword ? 'password' : 'text'">
+          <mat-label>Passwort</mat-label>
+          <input class="custom-autofill" matInput formControlName="password"
+            [type]="hidePassword ? 'password' : 'text'">
           <mat-icon class="hide-pw" matSuffix (click)="hidePassword = !hidePassword">
             {{ hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
           <mat-error *ngIf="registerForm['controls'].passwords?.hasError('required', 'password')">
-            Email is <strong>required</strong>
+            Passwort wird <strong>benötigt</strong>
           </mat-error>
+          <mat-error *ngIf="registerForm['controls'].passwords?.hasError('minlength', 'password')">
+              Mindestens <strong>3</strong> Zeichen
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Repeat Password</mat-label>
-          <input matInput placeholder="Repeat Password" formControlName="repeat"
-            [type]="hideRepeat ? 'password' : 'text'" [errorStateMatcher]="matcher">
+          <mat-label>Passwort wiederholen</mat-label>
+          <input class="custom-autofill" matInput formControlName="repeat" [type]="hideRepeat ? 'password' : 'text'"
+            [errorStateMatcher]="matcher">
           <mat-icon class="hide-pw" matSuffix (click)="hideRepeat = !hideRepeat">
             {{ hideRepeat ? 'visibility' : 'visibility_off'}}</mat-icon>
           <mat-error *ngIf="registerForm['controls'].passwords?.hasError('mismatch')">
-            mismatch
+            Passwörter stimmen nicht überein
           </mat-error>
         </mat-form-field>
 

@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
     passwords: new FormGroup({
       password: new FormControl('', [
         Validators.required,
+        Validators.minLength(3)
       ]),
       repeat: new FormControl('')
     }, { validators: this.passwordMatchValidator })
