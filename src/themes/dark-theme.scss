@@ -62,7 +62,7 @@ $myapp-warn: (
         A700 : #000000,
     )
 );
-$myapp-dark-primary: mat-palette($myapp-green, 500);
+$myapp-dark-primary: mat-palette($mat-blue-grey);
 $myapp-dark-accent:  mat-palette($mat-amber, A200, A100, A400);
-$myapp-dark-warn:    mat-palette($myapp-warn);
+$myapp-dark-warn:    mat-palette($mat-deep-orange);
 $myapp-dark-theme:   mat-dark-theme($myapp-dark-primary, $myapp-dark-accent, $myapp-dark-warn);

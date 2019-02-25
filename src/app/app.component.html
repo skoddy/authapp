@@ -3,6 +3,8 @@
     <mat-toolbar class="toolbar">
       <span><button mat-button routerLink="/">My App</button></span>
       <span class="spacer"></span>
+      <button mat-button (click)="setTheme('default-theme')">default</button>
+      <button mat-button (click)="setTheme('dark-theme')">dark</button>
       <button mat-button (click)="openDialog(0)">Anmelden</button>
       <button mat-button (click)="openDialog(1)">Registrieren</button>
     </mat-toolbar>

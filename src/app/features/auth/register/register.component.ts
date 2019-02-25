@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { AutofillMonitor } from '@angular/cdk/text-field';
 
 export class PasswordMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -23,7 +22,8 @@ export class RegisterComponent implements OnInit {
   @ViewChild('name', { read: ElementRef }) name: ElementRef<HTMLElement>;
   @ViewChild('email', { read: ElementRef }) email: ElementRef<HTMLElement>;
 
-  hide = true;
+  hidePassword = true;
+  hideRepeat = true;
   registerForm = new FormGroup({
     name: new FormControl('', [
       Validators.required
@@ -42,38 +42,19 @@ export class RegisterComponent implements OnInit {
 
   matcher = new PasswordMatcher();
 
-  constructor(private autofill: AutofillMonitor, private elem: ElementRef) { }
+  constructor() { }
 
   ngOnInit() {
-    this.autofill.monitor(this.name)
-      .subscribe(e => {
-        this.customAutofill(e, this.name);
-      });
-    this.autofill.monitor(this.email)
-      .subscribe(e => {
-        this.customAutofill(e, this.email);
-      });
+
   }
   ngAfterViewInit() {
     // you'll get your through 'elements' below code
 
   }
   ngOnDestroy() {
-    this.autofill.stopMonitoring(this.name);
-    this.autofill.stopMonitoring(this.email);
   }
   get f() { return this.registerForm.controls; }
-  customAutofill(event, element: ElementRef<HTMLElement>) {
-    const firstChild = element.nativeElement.parentElement.parentElement.firstElementChild.classList;
-    const secondChild = element.nativeElement.parentElement.parentElement.children[1].classList;
-    if (event.isAutofilled) {
-      firstChild.add('custom-autofill');
-      secondChild.add('custom-autofill');
-    } else {
-      firstChild.remove('custom-autofill');
-      secondChild.remove('custom-autofill');
-    }
-  }
+
   passwordMatchValidator(g: FormControl) {
     return g.get('password').value === g.get('repeat').value
       ? null : { 'mismatch': true };

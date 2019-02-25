@@ -1,4 +1,9 @@
-
+<mat-toolbar>
+  <span class="spacer"></span>
+  <button mat-icon-button [mat-dialog-close]="true">
+    <mat-icon aria-label="Close Auth">close</mat-icon>
+  </button>
+</mat-toolbar>
   <mat-tab-group color="primary" dynamicHeight mat-stretch-tabs class="stretched-tabs" [selectedIndex]="data.action" animationDuration="0ms" mat-align-tabs="center">
     <mat-tab label="Anmelden">
       <ng-template matTabContent>

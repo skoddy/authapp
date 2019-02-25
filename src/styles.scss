@@ -2,13 +2,18 @@
 @include mat-core();
 @import "./themes/default-theme.scss";
 @import "./themes/dark-theme.scss";
+@import '~@angular/cdk/text-field'; 
+
+
 
 .default-theme {
   @include angular-material-theme($myapp-theme);
+
 }
 
 .dark-theme {
   @include angular-material-theme($myapp-dark-theme);
+
 }
 
 html,
@@ -21,9 +26,4 @@ body {
 }
 .auth-dialog-class .mat-dialog-container {
   padding: 0px;
-}
-.custom-autofill {
-  background-color: rgb(250, 255, 189);
-  border: 0px;
-  border-radius: 4px;
-}
+}  

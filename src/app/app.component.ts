@@ -14,12 +14,12 @@ export class AppComponent {
 
   title = 'myapp';
   theme: string;
-  
+  t: string;
   constructor(
     public overlay: Overlay,
     public overlayContainer: OverlayContainer,
     public dialog: MatDialog) {
-    this.setTheme();
+    this.setTheme('default-theme');
   }
 
 
@@ -32,8 +32,8 @@ export class AppComponent {
     });
   }
 
-  setTheme(): any {
-    this.theme = 'default-theme';//  'default-theme';
+  setTheme(t): any {
+    this.theme = t;//  'default-theme';
     this.componentCssClass = this.theme;
     const classList = this.overlayContainer.getContainerElement().classList;
     const toRemove = Array.from(classList).filter((item: string) =>

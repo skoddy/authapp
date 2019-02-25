@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-content>
       <mat-form-field class="full-width">
-        <input id="email" matInput placeholder="Email" formControlName="email">
+        <input cdkFocusInitial id="email" matInput placeholder="Email" formControlName="email">
         <mat-error *ngIf="loginForm.controls['email'].errors?.email && !loginForm.controls['email'].errors?.required">
           Please enter a valid email address
         </mat-error>

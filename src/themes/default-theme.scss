@@ -3,3 +3,6 @@ $myapp-accent: mat-palette($mat-light-blue);
 $myapp-warn: mat-palette($mat-pink, 600);
 
 $myapp-theme: mat-light-theme($myapp-primary, $myapp-accent, $myapp-warn);
+input.custom-autofill {
+    @include cdk-text-field-autofill-color(transparent);
+  }
