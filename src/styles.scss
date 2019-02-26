@@ -1,15 +1,7 @@
 @import "~@angular/material/theming";
 @import "~@angular/cdk/text-field";
 @include mat-core();
-@import "./themes/default-theme.scss";
-@import "./themes/dark-theme.scss";
 @import "./themes/myapp-theme.scss";
-.default-theme {
-  @include angular-material-theme($myapp-theme);
-  input.custom-autofill {
-    @include cdk-text-field-autofill-color(transparent, black);
-  }
-}
 
 .myapp-theme {
   @include angular-material-theme($myapp-theme-two);
@@ -28,4 +20,17 @@ body {
 }
 .auth-dialog-class .mat-dialog-container {
   padding: 0px;
+}
+
+:root {
+  --app-background-color: #f6f6f6;
+  --app-primary-color: #344955;
+  --app-accent-color: #f9aa33;
+}
+body {
+  margin: 0;
+  background-color: var(--app-background-color);
+}
+.spacer {
+  flex: 1 1 auto;
 }

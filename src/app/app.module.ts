@@ -11,6 +11,7 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '@env/environment';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { environment } from '@env/environment';
     BrowserAnimationsModule,
     CoreModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     SharedModule
   ],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],

@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm" class="form">
+<form [formGroup]="registerForm" class="form" (ngSubmit)="registerUser(registerForm)">
   <mat-card>
 
     <mat-card-content>
@@ -49,15 +49,18 @@
             Passwörter stimmen nicht überein
           </mat-error>
         </mat-form-field>
+
         <mat-error>
           {{fbError}}
         </mat-error>
+
       </div>
 
     </mat-card-content>
+
     <mat-card-actions align="end">
-      <button class="full-width" mat-flat-button color="accent" [disabled]="!registerForm.valid"
-        (click)="registerUser(registerForm)">Registrieren</button>
+      <button class="full-width" mat-flat-button color="accent" [disabled]="!registerForm.valid">Registrieren</button>
     </mat-card-actions>
+    
   </mat-card>
 </form>

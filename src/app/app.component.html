@@ -4,11 +4,9 @@
     <mat-toolbar class="toolbar" color="primary">
       <span>My App</span>
       <span class="spacer"></span>
-      <button mat-button (click)="setTheme('default-theme')">default</button>
-      <button mat-button (click)="setTheme('myapp-theme')">dark</button>
       <div *ngIf="auth.authenticated then loggedIn else loginbutton"></div>
       <ng-template #loggedIn>
-        {{auth.userData?.displayName}}
+        <button mat-button routerLink="profile">Profile</button>
         <button mat-button (click)="auth.signOut()">signout</button>
       </ng-template>
       <ng-template #loginbutton>

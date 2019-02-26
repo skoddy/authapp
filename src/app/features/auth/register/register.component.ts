@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from '@app/core/services/auth/auth.service';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { AuthComponent } from '../auth.component';
 
 export class PasswordMatcher implements ErrorStateMatcher {
@@ -22,11 +22,11 @@ export class PasswordMatcher implements ErrorStateMatcher {
 })
 
 export class RegisterComponent implements OnInit {
-  @ViewChild('name', { read: ElementRef }) name: ElementRef<HTMLElement>;
-  @ViewChild('email', { read: ElementRef }) email: ElementRef<HTMLElement>;
+
   fbError: string;
   hidePassword = true;
   hideRepeat = true;
+  
   registerForm = new FormGroup({
     name: new FormControl('', [
       Validators.required

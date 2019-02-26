@@ -61,7 +61,9 @@ export class AuthService {
   get email(): string {
     return this.authState.email || '';
   }
-
+  get currentUserId(): string {
+    return this.authenticated ? this.authState.uid : null;
+  }
   createUserWithEmailAndPassword(
     displayName: string,
     email: string,
