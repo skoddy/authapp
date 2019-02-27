@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+@mixin strm-settings-component-theme($theme) {
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  .header {
+    background-color: mat-color($primary);
+    .mat-card-title {
+      color: mat-color($primary, default-contrast);
+    }
+    .mat-card-subtitle {
+      color: mat-color($primary, default-contrast);
+    }
+  }
+  .menu-list {
+    background-color: mat-color($background, background);
+  }
+}

@@ -1,0 +1,36 @@
+.settingsportal {
+    position: fixed;
+    display: block;
+    right: 0;
+    top: 0;
+    margin-right: 32px;
+    margin-top: 50px;
+    z-index: 900;
+    max-height: 400px;
+    width: 300px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    .mat-card {
+      transition: 0;
+      padding-top: 24px;
+      padding-left: 24px;
+      padding-right: 8px;
+      padding-bottom: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .mat-card-header {
+      .header-image {
+        background-size: cover;
+      }
+    }
+    .mat-nav-list {
+      .mat-icon {
+        color: hsl(0, 0%, 53.3%);
+        margin-right: 32px;
+      }
+    }
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }

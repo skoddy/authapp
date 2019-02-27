@@ -2,9 +2,14 @@
 @import "~@angular/cdk/text-field";
 @include mat-core();
 @import "./themes/myapp-theme.scss";
+@import "./app/features/settings-portal/settings-portal.component.scss-theme.scss";
+@mixin custom-components-theme($theme) {
+  @include strm-settings-component-theme($theme);
+}
 
 .myapp-theme {
   @include angular-material-theme($myapp-theme-two);
+  @include custom-components-theme($myapp-theme-two);
   input.custom-autofill {
     @include cdk-text-field-autofill-color(transparent, black);
   }

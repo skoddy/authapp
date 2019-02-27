@@ -1,22 +1,23 @@
 <div *ngIf="user || guest">
-<mat-drawer-container fullscreen>
-  <mat-drawer-content>
-    <mat-toolbar class="toolbar" color="primary">
-      <span>My App</span>
-      <span class="spacer"></span>
-      <div *ngIf="auth.authenticated then loggedIn else loginbutton"></div>
-      <ng-template #loggedIn>
-        <button mat-button routerLink="profile">Profile</button>
-        <button mat-button (click)="auth.signOut()">signout</button>
-      </ng-template>
-      <ng-template #loginbutton>
-        <button mat-button (click)="openDialog(0)">Anmelden</button>
-        <button mat-button (click)="openDialog(1)">Registrieren</button>
-      </ng-template>
-    </mat-toolbar>
-    <div class="main-container">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+  <mat-drawer-container fullscreen>
+    <mat-drawer-content>
+      <mat-toolbar class="toolbar" color="primary">
+        <span>My App</span>
+        <span class="spacer"></span>
+        <div *ngIf="auth.authenticated then loggedIn else loginbutton"></div>
+        <ng-template #loggedIn>
+          <a (click)="openSettings()">
+            <img class="account-button" [src]="auth.photoURL" height="30" width="30" align="middle">
+          </a>
+        </ng-template>
+        <ng-template #loginbutton>
+          <button mat-button (click)="openDialog(0)">Anmelden</button>
+          <button mat-button (click)="openDialog(1)">Registrieren</button>
+        </ng-template>
+      </mat-toolbar>
+      <div class="main-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </div>

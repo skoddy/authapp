@@ -13,13 +13,15 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '@env/environment';
+import { SettingsPortalComponent } from './features/settings-portal/settings-portal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SettingsPortalComponent
   ],
   imports: [
     AppRoutingModule,
@@ -31,7 +33,7 @@ import { environment } from '@env/environment';
     SharedModule
   ],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
-  entryComponents: [AuthComponent],
+  entryComponents: [AuthComponent, SettingsPortalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
