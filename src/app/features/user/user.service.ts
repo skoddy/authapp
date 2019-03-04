@@ -6,6 +6,7 @@ import { AuthService } from '@app/core/services/auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   userCollection: AngularFirestoreCollection<User>;

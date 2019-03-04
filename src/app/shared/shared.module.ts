@@ -4,9 +4,10 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UploadComponent } from './upload/upload.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @NgModule({
-  declarations: [UploadComponent],
+  declarations: [UploadComponent, SnackbarComponent],
   imports: [
     CommonModule,
     FormsModule,

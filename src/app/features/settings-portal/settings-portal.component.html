@@ -1,9 +1,9 @@
-<div class="settingsportal mat-elevation-z8" *ngIf="auth.user$ | async">
+<div class="settingsportal mat-elevation-z8" *ngIf="user">
     <mat-card class="header">
       <mat-card-header class="mat-typography">
-        <div mat-card-avatar class="header-image" [ngStyle]="{'background-image': 'url(' + auth.photoURL + ')'}"></div>
-        <mat-card-title>{{auth.displayName}}</mat-card-title>
-        <mat-card-subtitle>{{auth.email}}</mat-card-subtitle>
+        <div mat-card-avatar class="header-image" [ngStyle]="{'background-image': 'url(' + user.photoURL + ')'}"></div>
+        <mat-card-title>{{user.displayName}}</mat-card-title>
+        <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
       </mat-card-header>
       
     </mat-card>

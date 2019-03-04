@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from '@app/core/services/auth/auth.service';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { AuthComponent } from '../auth.component';
+import { SnackbarComponent } from '@app/shared/snackbar/snackbar.component';
 
 export class PasswordMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
   fbError: string;
   hidePassword = true;
   hideRepeat = true;
-  
+
   registerForm = new FormGroup({
     name: new FormControl('', [
       Validators.required
@@ -46,10 +47,22 @@ export class RegisterComponent implements OnInit {
 
   matcher = new PasswordMatcher();
 
-  constructor(public auth: AuthService, private dialogRef:MatDialogRef<AuthComponent>) { }
+  constructor(
+    public auth: AuthService,
+    private dialogRef: MatDialogRef<AuthComponent>,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit() {
+  }
 
+  openSnackBar(message: string) {
+    this.snackBar.openFromComponent(SnackbarComponent, {
+      duration: 3000,
+      data: {
+        message: message
+      }
+    });
   }
 
   registerUser(form) {
@@ -58,9 +71,13 @@ export class RegisterComponent implements OnInit {
         form.value.name,
         form.value.email,
         form.value.passwords.password
-      ).then(() => {
+      )
+      .then(() => {
         this.dialogRef.close();
-      }).catch(error => this.fbError = error.message)
+      })
+      .catch(error => {
+        this.openSnackBar(error.message)
+      })
   }
 
   passwordMatchValidator(g: FormControl) {

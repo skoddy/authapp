@@ -7,7 +7,7 @@
         <div *ngIf="auth.authenticated then loggedIn else loginbutton"></div>
         <ng-template #loggedIn>
           <a (click)="openSettings()">
-            <img class="account-button" [src]="auth.photoURL" height="30" width="30" align="middle">
+            <img class="account-button" [src]="user.photoURL" height="30" width="30" align="middle">
           </a>
         </ng-template>
         <ng-template #loginbutton>

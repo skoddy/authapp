@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, first } from 'rxjs/operators';
 import { User } from '@app/data-model';
 
 @Injectable({
@@ -15,7 +15,7 @@ import { User } from '@app/data-model';
 export class AuthService {
 
   user$: Observable<User | null>;
-  authState: any = null;
+  authState: firebase.User;
   userData: User;
 
   constructor(
@@ -25,17 +25,20 @@ export class AuthService {
 
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
+        this.authState = user;
         if (user) {
+          console.log("User: ", this.user$)
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);
         }
       })
     );
-    this.afAuth.authState.subscribe(data => this.authState = data);
-    this.user$.subscribe(data => this.userData = data);
 
+  }
 
+  get user() {
+    return this.user$.pipe(first()).toPromise();
   }
 
   get authenticated(): boolean {
@@ -64,6 +67,7 @@ export class AuthService {
   get currentUserId(): string {
     return this.authenticated ? this.authState.uid : null;
   }
+
   createUserWithEmailAndPassword(
     displayName: string,
     email: string,
@@ -74,7 +78,11 @@ export class AuthService {
       .then((credential) => {
         this.updateUserData(credential.user, displayName);
       })
-      ;
+      .then(() => {
+        this.afAuth.auth.currentUser.sendEmailVerification()
+          .then(() => console.log("Wir haben Dir eine Email zur bestätigung der E-Mail Adresse geschickt."))
+          .catch(error => console.log(error.message));
+      })
   }
 
   signOut() {
@@ -82,7 +90,7 @@ export class AuthService {
       this.router.navigate(['/']);
       console.log('Signed Out!');
     })
-    .catch(error => this.handleError(error));
+      .catch(error => this.handleError(error));
   }
 
   emailSignIn(email: string, password: string) {

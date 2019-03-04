@@ -1,4 +1,4 @@
-import { Component, HostBinding, ViewContainerRef } from '@angular/core';
+import { Component, HostBinding, ViewContainerRef, OnInit } from '@angular/core';
 import { Overlay, OverlayContainer, OverlayConfig } from '@angular/cdk/overlay';
 import { MatDialog } from '@angular/material';
 import { AuthComponent } from './features/auth/auth.component';
@@ -7,13 +7,14 @@ import { User } from './data-model';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { tap, filter } from 'rxjs/operators';
 import { SettingsPortalComponent } from './features/settings-portal/settings-portal.component';
+import { UserService } from './features/user/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   @HostBinding('class') componentCssClass;
 
@@ -27,20 +28,26 @@ export class AppComponent {
     public overlayContainer: OverlayContainer,
     public viewContainerRef: ViewContainerRef,
     public dialog: MatDialog,
-    public auth: AuthService) {
-      this.auth.user$.subscribe(user => {
-        if (user) {
-          this.user = user;
-        } else {
-          this.guest = 'guest';
-        }
-      });
+    public auth: AuthService,
+    public userService: UserService) {
+
     this.setTheme('myapp-theme');
   }
-
-
+ngOnInit() {
+  this.getUser();
+}
+getUser() {
+  return this.auth.user$.subscribe(user => {
+    if (user) {
+      this.user = user;
+    } else {
+      this.guest = 'guest';
+    }
+  });
+}
   openDialog(action: number) {
     this.dialog.open(AuthComponent, {
+      disableClose: true,
       data: {
         action: action
       },

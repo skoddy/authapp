@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '@env/environment';
 import { SettingsPortalComponent } from './features/settings-portal/settings-portal.component';
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { SettingsPortalComponent } from './features/settings-portal/settings-por
     SharedModule
   ],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
-  entryComponents: [AuthComponent, SettingsPortalComponent],
+  entryComponents: [AuthComponent, SettingsPortalComponent, SnackbarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
