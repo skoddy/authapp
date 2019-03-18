@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
+import * as firebase from "firebase/app";
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
@@ -96,6 +96,14 @@ export class AuthService {
   emailSignIn(email: string, password: string) {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password);
+  }
+  
+  resetPassword(email: string) {
+    return firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => console.log(`We've sent you a password reset link`))
+      .catch(error => console.log(error.message));
   }
 
   // If error, console log and toast user
