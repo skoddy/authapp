@@ -5,6 +5,7 @@ import { AuthService } from '@app/core/services/auth/auth.service';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { AuthComponent } from '../auth.component';
 import { SnackbarComponent } from '@app/shared/snackbar/snackbar.component';
+import { SnackbarService } from '@app/shared/snackbar/snackbar.service';
 
 export class PasswordMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -50,19 +51,10 @@ export class RegisterComponent implements OnInit {
   constructor(
     public auth: AuthService,
     private dialogRef: MatDialogRef<AuthComponent>,
-    private snackBar: MatSnackBar
+    private snackbarService: SnackbarService
   ) { }
 
   ngOnInit() {
-  }
-
-  openSnackBar(message: string) {
-    this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 3000,
-      data: {
-        message: message
-      }
-    });
   }
 
   registerUser(form) {
@@ -76,7 +68,7 @@ export class RegisterComponent implements OnInit {
         this.dialogRef.close();
       })
       .catch(error => {
-        this.openSnackBar(error.message)
+        this.snackbarService.openSnackBar(error.message)
       })
   }
 

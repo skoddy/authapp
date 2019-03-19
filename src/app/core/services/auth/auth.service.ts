@@ -101,9 +101,7 @@ export class AuthService {
   resetPassword(email: string) {
     return firebase
       .auth()
-      .sendPasswordResetEmail(email)
-      .then(() => console.log(`We've sent you a password reset link`))
-      .catch(error => console.log(error.message));
+      .sendPasswordResetEmail(email);
   }
 
   // If error, console log and toast user

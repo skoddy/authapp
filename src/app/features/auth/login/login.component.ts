@@ -4,6 +4,8 @@ import { AuthService } from '@app/core/services/auth/auth.service';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { AuthComponent } from '../auth.component';
 import { SnackbarComponent } from '@app/shared/snackbar/snackbar.component';
+import { Router } from '@angular/router';
+import { SnackbarService } from '@app/shared/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -24,20 +26,16 @@ export class LoginComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<AuthComponent>,
     private auth: AuthService,
-    private snackBar: MatSnackBar) {
+    private snackbarService: SnackbarService,
+    private router: Router) {
 
   }
 
   ngOnInit() {
   }
 
-  openSnackBar(message: string) {
-    this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 3000,
-      data: {
-        message: message
-      }
-    });
+  resetPassword() {
+    this.router.navigate(['reset-password']).then(() => this.dialogRef.close());
   }
 
   login(form) {
@@ -47,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.dialogRef.close();
       })
       .catch(error => {
-        this.openSnackBar(error.message);
+        this.snackbarService.openSnackBar(error.message);
       });
   }
 }
