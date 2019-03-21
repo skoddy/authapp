@@ -48,6 +48,7 @@ getUser() {
   openDialog(action: number) {
     this.dialog.open(AuthComponent, {
       disableClose: true,
+      maxWidth: '100vw', maxHeight: '100vh',
       data: {
         action: action
       },
