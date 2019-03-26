@@ -15,6 +15,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '@env/environment';
 import { SettingsPortalComponent } from './features/settings-portal/settings-portal.component';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
+import { FeedComponent } from './features/feed/feed.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SnackbarComponent } from './shared/snackbar/snackbar.component';
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    SettingsPortalComponent
+    SettingsPortalComponent,
+    FeedComponent
   ],
   imports: [
     AppRoutingModule,

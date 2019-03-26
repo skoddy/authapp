@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -68,7 +68,8 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ScrollDispatchModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -103,6 +104,7 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    ScrollDispatchModule
   ]
 })
 export class MaterialModule { }

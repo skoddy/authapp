@@ -1,0 +1,14 @@
+<ng-container *ngIf="infinite | async as people">
+
+
+    <cdk-virtual-scroll-viewport itemSize="100" (scrolledIndexChange)="nextBatch($event, (people[people.length - 1].displayName))">
+  
+  
+      <mat-card *cdkVirtualFor="let p of people; let i = index; trackBy: trackByIdx" class="animated fadeIn">
+        <h2>{{ i }}. {{ p.displayName }}</h2>
+      </mat-card>
+  
+    </cdk-virtual-scroll-viewport>
+  
+  </ng-container>
+
