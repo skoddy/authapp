@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', Validators.required)
-  })
+  });
 
   constructor(
     private dialogRef: MatDialogRef<AuthComponent>,

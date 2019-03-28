@@ -8,6 +8,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { tap, filter } from 'rxjs/operators';
 import { SettingsPortalComponent } from './features/settings-portal/settings-portal.component';
 import { UserService } from './features/user/user.service';
+import { AddContentComponent } from './features/add-content/add-content.component';
 
 @Component({
   selector: 'app-root',
@@ -45,17 +46,23 @@ getUser() {
     }
   });
 }
-  openDialog(action: number) {
+  openAuthDialog(action: number) {
     this.dialog.open(AuthComponent, {
       disableClose: true,
       maxWidth: '100vw', maxHeight: '100vh',
       data: {
         action: action
       },
-      panelClass: 'auth-dialog-class'
+      panelClass: 'dialog-class'
     });
   }
-
+  openNewContentDialog() {
+    this.dialog.open(AddContentComponent, {
+      disableClose: true,
+      maxWidth: '100vw', maxHeight: '100vh',
+      panelClass: 'dialog-class'
+    });
+  }
   setTheme(t): any {
     this.theme = t;//  'default-theme';
     this.componentCssClass = this.theme;
@@ -67,7 +74,7 @@ getUser() {
     classList.add(this.theme);
   }
 
-  openSettings() {
+  openUserMenu() {
     const config = new OverlayConfig({
       hasBackdrop: true,
       backdropClass: 'cdk-overlay-transparent-backdrop',

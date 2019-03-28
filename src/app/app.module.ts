@@ -16,6 +16,7 @@ import { environment } from '@env/environment';
 import { SettingsPortalComponent } from './features/settings-portal/settings-portal.component';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { FeedComponent } from './features/feed/feed.component';
+import { AddContentComponent } from './features/add-content/add-content.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FeedComponent } from './features/feed/feed.component';
     LoginComponent,
     RegisterComponent,
     SettingsPortalComponent,
-    FeedComponent
+    FeedComponent,
+    AddContentComponent
   ],
   imports: [
     AppRoutingModule,
@@ -36,7 +38,7 @@ import { FeedComponent } from './features/feed/feed.component';
     SharedModule
   ],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
-  entryComponents: [AuthComponent, SettingsPortalComponent, SnackbarComponent],
+  entryComponents: [AuthComponent, AddContentComponent, SettingsPortalComponent, SnackbarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

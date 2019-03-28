@@ -10,9 +10,7 @@
   flex: 1 1 auto;
 }
 
-.auth-dialog-toolbar {
-  height: 56px;
-}
+
 
 
 
@@ -32,13 +30,10 @@
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 .reset-password-card {
   margin: 10px;
   max-width: 600px;
   margin: 16px auto;
-}
-
-.full-width {
-  width: 100%;
 }

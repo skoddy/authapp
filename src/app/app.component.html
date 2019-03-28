@@ -6,13 +6,14 @@
         <span class="spacer"></span>
         <div *ngIf="auth.authenticated then loggedIn else loginbutton"></div>
         <ng-template #loggedIn>
-          <a (click)="openSettings()">
+          <button mat-button (click)="openNewContentDialog()">Upload</button>
+          <a (click)="openUserMenu()">
             <img class="account-button" [src]="user.photoURL" height="30" width="30" align="middle">
           </a>
         </ng-template>
         <ng-template #loginbutton>
-          <button mat-button (click)="openDialog(0)">Anmelden</button>
-          <button mat-button (click)="openDialog(1)">Registrieren</button>
+          <button mat-button (click)="openAuthDialog(0)">Anmelden</button>
+          <button mat-button (click)="openAuthDialog(1)">Registrieren</button>
         </ng-template>
       </mat-toolbar>
       <div class="main-container">
